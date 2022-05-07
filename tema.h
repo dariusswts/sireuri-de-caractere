@@ -6,221 +6,223 @@
 using namespace std;
 
 
-///ex2
-//a
-bool palindrom(char w[]) {
-    int i = 0, j = strlen(w) - 1;
-    while (i < j) {
-        if (w[i] != w[j]) return false;
-        i++; j--;
-    }
-    return true;
-}
-void cuvintePalindrom(char s[]) {
-    char copie[205];
-    strcpy(copie, s);
-    char sep[200];
-
-    char p = strtok(copie, sep);
-    cout << "Palindroame: ";
-    while (p) {
-        if (palindrom(p)) cout << p << " ";
-        p = strtok(NULL, sep);
-    }
-    cout << endl;
-}
-
-
-//c
-void stergeCuvinteScurte(char s[]) {
-    char copie[205];
-    strcpy(copie, s);
-    char sep[200];
-
-    char rez[205] = "";
-    char *p = strtok(copie, sep);
-
-    while (p) {
-        if (strlen(p) >= 4) {
-            strcat(rez, p);
-            strcat(rez, " ");
-        }
-        p = strtok(NULL, sep);
-    }
-    strcpy(s, rez);
-}
-
-//d
-void alTreileaCuvant(char s[]) {
-    char copie[205];
-    strcpy(copie, s);
-    char sep[200];
-
-    char *p = strtok(copie, sep);
-    int k = 1;
-
-    while (p) {
-        if (k == 3) {
-            cout << "Al 3-lea cuvant: " << p << endl;
-            return;
-        }
-        k++;
-        p = strtok(NULL, sep);
-    }
-}
-
-//f
-void dubleazaTriplete(char s[]) {
-    char rez[405];
-    int j = 0;
-    char sep[200];
-
-    for (int i = 0; s[i]; i++) {
-        rez[j++] = s[i];
-        if (s[i] && s[i] == s[i + 1] && s[i] == s[i + 2]) {
-            rez[j++] = s[i];
-            rez[j++] = s[i];
-            rez[j++] = s[i];
-        }
-    }
-    rez[j] = 0;
-    strcpy(s, rez);
-}
-
-void rezolvareEX2(){
-    char s[205];
-    cin.getline(s, 200);
-    cout << "a) ";
-    cuvintePalindrom(s);
-
-    stergeCuvinteScurte(s);
-    cout << "c) " << s << endl;
-
-    cout << "d) ";
-    alTreileaCuvant(s);
-
-    dubleazaTriplete(s);
-    cout << "f) " << s << endl;
-}
-
 ///ex3
 
-//a
-void eliminaSpatiiMultiple(char text[100]){
+//a)
+void sterge(char x[],int poz){
+
+    for(int i=poz;i<strlen(x)-1;i++){
+        x[i]=x[i+1];
+    }
+    x[strlen(x)-1]='\n';
+}
+void eliminaSpatiiMulti(char text[100]){
     for(int i=0;i<strlen(text)-1;i++){
         if(text[i]==' '&&text[i+1]==' '){
-            stergere(text,i);
+            sterge(text,i);
             i--;
         }
     }
 
 
 }
-//b
-char micLaMar(char c){
-    if(c>='a'&&c<='z'){
-        c=c-32;
+
+void rezolvare3A(){
+    char p[100]="Azi            a              fost     o     zi     frumoasa";
+    cout<<p<<endl;
+    eliminaSpatiiMulti(p);
+    cout<<"Dupa stergerrea spatilor multiple:"<<endl;
+    cout<<p;
+}
+
+//b)
+
+char literaMare(char x){
+    if(x>='a'&&x<='z'){
+        x=x-32;
     }
-    return c;
+    return x;
 }
 
-char urmatorulCar(char c){
-
-if(c>='a'&&c<='z'){
-
-        return c+1;
-
-}
-return c;
-
-}
-
-
-void rezB(char c[]){
-    c[0]=micLaMare(c[0]);
-
-    for(int i=1;i<strlen(c)-1;i++){
-       if(c[i-1]==' '){
-            c[i]=micLaMare(c[i]);
-       }
-       if(c[i+1]==' '){
-            c[i]=urmatorulCaracter(c[i]);
-       }
-
+char urmatoareaDupaAlfabet(char x){
+    if(x=='z'){
+        return 'a';
     }
-
-    c[strlen(c)-1]=urmatorulCaracter(c[strlen(c)-1]);
-    cout<<c;
-
-}
-
-
-
-//d
-int aparitii(char s[], char w[]) {
-    char copie[205];
-    strcpy(copie, s);
-
-    char *p = strtok(copie, sep);
-    int cnt = 0;
-
-    while (p) {
-        if (strcmp(p, w) == 0) cnt++;
-        p = strtok(NULL, sep);
+    if(x=='Z'){
+        return 'A';
     }
-    return cnt;
-}
-void cuvinteUnice(char s[]) {
-    char copie[205];
-    strcpy(copie, s);
-
-    char *p = strtok(copie, sep);
-    cout << "Cuvinte unice: ";
-
-    while (p) {
-        if (aparitii(s, p) == 1)
-            cout << p << " ";
-        p = strtok(NULL, sep);
+    if((x>='a'&&x<='z')||(x>='A'&&x<='Z')){
+        return x+1;
     }
-    cout << endl;
+    return x;
 }
 
-//e
-void modificaLitere(char s[], char C, char D) {
-    char rez[405];
-    int j = 0;
-
-    for (int i = 0; s[i]; i++) {
-        if (s[i] == C) continue;
-
-        rez[j++] = s[i];
-
-        if (s[i] == D)
-            rez[j++] = s[i];
+void rezolvare3B(){
+    char p[100]="Ana are mere";
+    cout<<p<<endl;
+    for(int i=0;i<strlen(p);i++){
+        if(p[i-1]==' '&&p[i]!=' '){
+            p[i]=literaMare(p[i]);
+        }
+        if(p[i]!=' '&&p[i+1]==' '){
+            p[i]=urmatoareaDupaAlfabet(p[i]);
+        }
     }
-
-    rez[j] = 0;
-    strcpy(s, rez);
+    p[strlen(p)-1]=urmatoareaDupaAlfabet(p[strlen(p)-1]);
+    cout<<"Sirul la final este :"<<p<<endl;
 }
 
-void rezolvareEX3(){
-    char s[205];
-    cin.getline(s, 200);
 
-    eliminaSpatiiMultiple(s);
-    cout << "a "<<s<< endl;
+//e)
 
-    rezB(s);
-    cout << "b "<<s<< endl;
+void inserareCar(char p[],int poz,int car){
+    for(int i=strlen(p)-1;i>=poz;i--){
+       p[i+1]=p[i];
+    }
+    p[poz]=car;
 
-    cout << "d ";
-    cuvinteUnice(s);
-
-    char C, D;
-    cin >> C>>D;
-    modificaLitere(s, C, D);
-    cout << "e) " << s << endl;
 }
+void rezolvare3E(){
+    char p[100]="Costel da de mancare la catel";
+    cout<<p<<endl;
+    char C='c';
+    char D='d';
+    for(int i=0;i<strlen(p);i++){
+        if(p[0]=='C'){
+        sterge(p,i);
+        }
+        if(p[i]==C){
+            sterge(p,i);
+            i--;
+        }
+        else if(p[i]==D){
+            inserareCar(p,i,p[i]);
+            i++;
+        }
+    }
+    cout<<"Rezultatul : "<<p<<endl;
+}
+
+
+
+///ex 2
+
+
+//b)
+
+
+
+
+//c)
+bool maiMic4(char p[]){
+    return strlen(p)>=4;
+}
+
+void afiseazaMin4(char p[]){
+    char cuv[50];
+    for(int i=0;i<=strlen(p);i++){
+        if(maiMic4(cuv)){
+            cout<<cuv<<" ";
+        }
+    }
+}
+
+void rezolvare2C(){
+    char p[200]="Ana da de mancare la catel";
+    cout<<p<<endl;
+    afiseazaMin4(p);
+}
+
+
+
+//d)
+void alTreilea(char s[]){
+    int nr=0;
+
+    for(int i=0;i<strlen(s);i++){
+        if(s[i]!=' ' && (i==0 || s[i-1]==' ')){
+            nr++;
+            if(nr==3){
+                for(int j=i;j<strlen(s) && s[j]!=' ';j++)
+                    cout<<s[j];
+            }
+        }
+    }
+    cout<<"Nu exista 3 cuvinte";
+}
+void rezolvare2D(){
+    char p[200]="Ana da de mancare la catel";
+    cout<<p<<endl;
+    alTreilea(p);
+    cout<<p;
+}
+
+
+//f)
+void dubleazaTriplu(char s[]){
+    for(int i=0;i<strlen(s)-2;i++){
+        if(s[i]!=' ' && s[i]==s[i+1] && s[i]==s[i+2]){
+            int n=strlen(s);
+            for(int j=n;j>=i+3;j--){
+                s[j+3]=s[j];
+            }
+            s[i+3]=s[i];
+            s[i+4]=s[i];
+            s[i+5]=s[i];
+
+            i=i+5;
+        }
+    }
+}
+
+void rezolvare2F(){
+    char p[200]="Copiii dau mancare la catel";
+    cout<<p<<endl;
+    dubleazaTriplu(p);
+    cout<<p;
+}
+
+
+//g)
+void ultimaMare(char s[]){
+    for(int i=0;i<strlen(s);i++){
+        if(s[i]!=' ' && (i==strlen(s)-1 || s[i+1]==' ')){
+            if(s[i]>='a' && s[i]<='z')
+                s[i]-=32;
+        }
+    }
+}
+
+void rezolvare2G(){
+    char p[200]="Ana da de mancare la catel";
+    cout<<p<<endl;
+    ultimaMare(p);
+    cout<<p;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

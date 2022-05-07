@@ -6,15 +6,9 @@ using namespace std;
 int main()
 {
 
+cout<<"nimic";
 
-    rezolvareEX2();
-    /*
-    char p[200]="masina";
-     ;
-    inserareCaracter(p,,'A');
-    cout<<p;
 
-    */
 
 
 
