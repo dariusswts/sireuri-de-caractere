@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1770803377 source:c:\mycode\siruri_de_caractere.h\main.cpp
+	<iostream>
+	<fstream>
+	"probleme.h"
+
+1770629003 c:\mycode\siruri_de_caractere.h\funtii.h
+	<iostream>
+	<fstream>
+	<string.h>
+
+1770803857 c:\mycode\siruri_de_caractere.h\probleme.h
+	<iostream>
+	<fstream>
+	<string.h>
+
