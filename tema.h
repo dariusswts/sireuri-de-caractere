@@ -201,28 +201,121 @@ void rezolvare2G(){
 }
 
 
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+/////////////////////////////////////////
+//Se citește un șir. Să se afișeze numărul de vocale
+int numaraVocale(char s[]) {
+    int cnt=0;
+    for(int i=0; s[i]!=0; i++){
+        if(esteVocala(s[i])){
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
+void rezolvare1(){
+    char s[200];
+    cin.getline(s,200);
+    cout<<numaraVocale(s);
+}
+
+//Să se afișeze câte litere mari are șirul.
+
+bool literaMare(char c) {
+    return c>='A' && c<='Z';
+}
+
+int numaraLitereMari(char s[]) {
+    int cnt=0;
+    for(int i=0; s[i]!=0; i++){
+        if(literaMare(s[i])){
+                cnt++;
+        }
+    }
+    return cnt;
+}
+
+void rezolvare2(){
+    char s[200];
+    cin.getline(s,200);
+    cout<<numaraLitereMari(s);
+}
+
+//Cuvintele sunt separate prin spații. Să se afișeze numărul lor.
+
+int numaraCuvinte(char s[]) {
+    int cnt=0;
+    for(int i=0; s[i]!=0; i++){
+        if(s[i]!=' ' && (i==0 || s[i-1]==' ')){
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
+void rezolvare3(){
+    char s[256];
+    cin.getline(s,256);
+    cout<<numaraCuvinte(s);
+}
+
+//Se citește un șir. Eliminați toate vocalele din el și afișați șirul rezultat.
+
+void stergeVocale(char s[]) {
+    int k=0;
+    for(int i=0; s[i]!=0; i++){
+        if(!esteVocala(s[i])){
+            s[k++]=s[i];
+        }
+    }
+    s[k]=0;
+}
+
+void rezolvare4(){
+    char s[256];
+    cin.getline(s,256);
+    stergeVocale(s);
+    cout<<s;
+}
 
 
+//Se citește un șir și o literă c. Afișați de câte ori apare litera în șir (indiferent de majuscule/minuscule).
 
+char mic(char c){
+    if(c>='A' && c<='Z') return c+32;
+    return c;
+}
 
+int frecventa(char s[], char c) {
+    int cnt=0;
+    c = mic(c);
+    for(int i=0; s[i]!=0; i++){
+        if(mic(s[i])==c){
+            cnt++;
+        }
+    }
+    return cnt;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void rezolvare5(){
+    char s[256], c;
+    cin.getline(s,256);
+    cin>>c;
+    cout<<frecventa(s,c);
+}
 
 
 
