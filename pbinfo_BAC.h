@@ -168,9 +168,130 @@ bool esteAsemenea(char cuv1[],char cuv2[]){
     return nrVocale(cuv1)==nrVocale(cuv2);
 }
 
-void comparareCuvinte(){
+
+/*
+Fiind date două șiruri de caractere a şi b, îl numim pe a sufix al lui b dacă a este egal cu b sau
+dacă b se poate obţine din a prin alipirea la stânga a unor noi caractere.
+Variabilele a şi b pot memora câte un șir cu cel mult 20 de caractere. Scrieţi o secvenţă de
+instrucţiuni în urma executării căreia variabila a să memoreze un sufix al lui b format din trei
+caractere, sau șirul nedeterminat, dacă nu există un astfel de sufix.
+Exemplu: dacă b memorează şirul centaur, atunci a memorează şirul aur, iar dacă b memorează
+şirul au, atunci a memorează şirul nedeterminat.
+
+*/
+
+void sufix3Litere(char a[],char b[]){
+    int n=strlen(b);
+    if(n<3){
+        strcpy(a,"nedeterminat");
+    }
+    else{
+        a[0]=b[n-3];
+        a[1]=b[n-2];
+        a[2]=b[n-1];
+    }
+}
+
+void bac2019(){
+    char a[100];
+    char b[100];
+    cin>>b;
+    sufix3Litere(a,b);
+    cout<<"Sufixul lui b transmis in a :";
+    cout<<a;
+}
+///Simulare bacalaureat, martie 2019
+/*
+Într-un text de cel mult 50 de caractere cuvintele sunt separate prin câte un spațiu și sunt formate din
+litere mari ale alfabetului englez, urmate eventual de caracterul . (punct), dacă sunt scrise prescurtat.
+Textul reprezintă numele unei instituții de învățământ și doar cuvintele din mulțimea
+{COLEGIUL, LICEUL, NATIONAL, TEORETIC} pot fi prescurtate, eliminându-se ultimele lor litere.
+Scrieţi un program C/C++ care citeşte de la tastatură un text de tipul precizat și construiește în
+memorie, apoi afișează pe ecran, numele instituției scris fără prescurtări.
+Exemplu: dacă se citește textul COLEG. NATIONAL DE INFORMATICA sau textul
+COLEG. NAT. DE INFORMATICA se obține COLEGIUL NATIONAL DE INFORMATICA
+
+*/
+
+void estePrescurtat(char cuv[100]){
+    if(strcmp(cuv,"COLEG")==0){
+        strcpy(cuv,"COLEGIUL");
+    }
+    if(strcmp(cuv,"LICE")==0){
+        strcpy(cuv,"LICEUL");
+    }
+    if(strcmp(cuv,"NAT")==0){
+        strcpy(cuv,"NATIONAL");
+    }
+}
+void bac2019ultimul(){
+
+    char sir[100]="COLEG. NAT. DE INFORMATICA";
+    char cuvinte[100][100];
+    int n=0;
+    char*p=strtok(sir," .");
+    while(p!=NULL){
+        strcpy(cuvinte[n],p);
+        n++;
+        p=strtok(NULL," .");
+    }
+    for(int i=0;i<n;i++){
+        estePrescurtat(cuvinte[i]);
+        cout<<cuvinte[i];
+        cout<<" ";
+    }
+
 
 }
+
+///2018, 28 iunie
+/*
+Fiind dat un cuvânt s, format numai din litere, și un cod c, de aceeași lungime cu s, format
+numai din cifre, numim codificare a lui s pe baza codului c operația de construire a unui
+nou șir, în care inițial se copiază prima literă din s, apoi, parcurgând de la stânga la dreapta
+restul șirului s, se adaugă litera curentă la începutul noului șir, dacă cifra corespunzătoare
+de pe aceeași poziție în c este pară, sau la finalul noului șir, în caz contrar.
+Exemplu: dacă șirul s este etalon, iar codul este 025843 se obține cuvântul oltean
+(inițial șirul conține litera e, apoi se adaugă, în ordinea parcurgerii lui s, literele t, l și o la
+început, iar restul literelor la final).
+Scrieţi un program C/C++ care citeşte de la tastatură două cuvinte, notate cu s și c, fiecare
+având cel mult 102
+ caractere, s fiind format doar din litere mici ale alfabetului englez, iar c
+fiind format doar din cifre. După primul cuvânt se tastează Enter. Programul construiește în
+memorie și afișează pe ecran cuvântul obținut prin codificarea lui s pe baza lui c, dacă cele
+două cuvinte au aceeași lungime, sau mesajul cod incorect, în caz contrar.
+Exemplu: dacă se citesc cuvintele alăturate, se afişează pe ecran cuvântul
+oltean
+*/
+
+void codifiaca(char s[],char c[],char rezultat[]){
+    for(int i=1;i<n;i++){
+        char lit=s[i];
+        char cif=c[i];
+        if(cif%2==0){
+            char aux[200];
+            strcpy(aux,rezultat);
+            rezultat[0]=lit;
+            strcpy(rezutlat+1,aux);
+        }
+        else{
+            int lungime=strlen(rezultat);
+            rezultat[lungime]=lit;
+            rezultat[]
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

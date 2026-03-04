@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1772474225 source:c:\mycode\siruri_de_caractere.h\main.cpp
+1772641039 source:c:\mycode\siruri_de_caractere.h\main.cpp
 	<iostream>
 	<fstream>
-	"corectarea_temei.h"
+	"pbinfo_BAC.h"
 
 1770629003 c:\mycode\siruri_de_caractere.h\funtii.h
 	<iostream>
@@ -24,7 +24,7 @@
 	<fstream>
 	<string.h>
 
-1772269121 c:\mycode\siruri_de_caractere.h\pbinfo_bac.h
+1772642885 c:\mycode\siruri_de_caractere.h\pbinfo_bac.h
 	<iostream>
 	<fstream>
 	<string.h>

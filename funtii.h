@@ -103,8 +103,19 @@ void separa(){
 
     }
 }
+///exemplu la separare cuvinte cu vector de cuvinte
+void vectorCuv(char sir[100],char cuvinte[100][100]){
+    int n=0;
+    cin.getline(sir,100);
+    char*p=strtok(sir," ");
+    while(p!=NULL){
+        strcpy(cuvinte[n],p);
+        cout<<p<<endl;
+        n++;
+        p=strtok(NULL," ");
 
-
+    }
+}
 
 
 
