@@ -181,4 +181,17 @@ void ex1C(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif // PROBLEME_H_INCLUDED

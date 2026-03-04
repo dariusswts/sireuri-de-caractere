@@ -590,7 +590,6 @@ void invers(char sir[], char x[]){
 ///
 /*
 
-Sesiunea iunie – 13 iunie 2025
 Un cuvânt semioglindit se obţine dintr-un cuvânt cu 2·k (k∈[1,102]) litere, prin interschimbarea în
 acesta a secvenței formate din primele k litere cu secvența formată din ultimele k litere.
 Exemplu: din cuvântul platim se obţine cuvântul semioglindit timpla.
@@ -709,6 +708,28 @@ void prob10(){
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
