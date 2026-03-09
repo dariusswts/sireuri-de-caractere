@@ -694,44 +694,313 @@ viteaz
 bool afiseazaExact(char cuv[], int nr, int n){
     bool exista=false;
     for(int i=0;i<nr;i++){
-        if(lungime(cuv[i])==n){
+//        if(lungime(cuv[i])==n){
             cout << cuv[i] << endl;
             exista=true;
         }
-    }
+
     return exista;
+
 }
 void prob10(){
     int n;
-    char sir[105]="Fat Frumos este cel mai viteaz"
-    cin >> n;
+    char sir[105]="Fat Frumos este cel mai viteaz";
+    cin >>n;
 
 
 }
 
 
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+
+/*
+Două cuvinte se numesc asemenea dacă sunt distincte și au același număr de vocale. Se
+consideră vocale literele a, e, i, o, u.
+Scrieți un program C/C++ care citește de la tastatură un număr natural n (n[1,102]),
+apoi n cuvinte, separate prin Enter. Fiecare cuvânt este format din cel mult 20 de
+caractere, numai litere mici ale alfabetului englez. Programul afișează pe ecran, separate
+prin câte un spațiu, toate cuvintele asemenea cu ultimul cuvânt citit, sau mesajul
+nu exista dacă nu există astfel de cuvinte.
+Exemplu: dacă se citesc datele alăturate, se afișează pe ecran, nu neapărat în această
+ordine, cuvintele:
+lalelele brandusele
+*/
 
 
+int nrVocale(char cuv[]){
+    int cnt=0;
+    for(int i=0;cuv[i]!='\0';i++){
+        char c=cuv[i];
+        if(c=='a'||c=='e'||c=='i'||c=='o'||c=='u'){
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
+bool esteAsemenea(char cuv1[],char cuv2[]){
+    if(strcmp(cuv1,cuv2)==0){
+        return false;
+    }
+    return nrVocale(cuv1)==nrVocale(cuv2);
+}
 
 
+/*
+Fiind date două șiruri de caractere a şi b, îl numim pe a sufix al lui b dacă a este egal cu b sau
+dacă b se poate obţine din a prin alipirea la stânga a unor noi caractere.
+Variabilele a şi b pot memora câte un șir cu cel mult 20 de caractere. Scrieţi o secvenţă de
+instrucţiuni în urma executării căreia variabila a să memoreze un sufix al lui b format din trei
+caractere, sau șirul nedeterminat, dacă nu există un astfel de sufix.
+Exemplu: dacă b memorează şirul centaur, atunci a memorează şirul aur, iar dacă b memorează
+şirul au, atunci a memorează şirul nedeterminat.
+
+*/
+
+void sufix3Litere(char a[],char b[]){
+    int n=strlen(b);
+    if(n<3){
+        strcpy(a,"nedeterminat");
+    }
+    else{
+        a[0]=b[n-3];
+        a[1]=b[n-2];
+        a[2]=b[n-1];
+    }
+}
+
+void problem2(){
+    char a[100];
+    char b[100];
+    cin>>b;
+    sufix3Litere(a,b);
+    cout<<"Sufixul lui b transmis in a :";
+    cout<<a;
+}
+
+/*
+Se consideră un text cu cel mult 100 de caractere, în care cuvintele sunt formate din litere
+mari ale alfabetului englez și sunt separate prin câte un spațiu.
+Scrieţi un program C/C++ care citeşte de la tastatură un text de tipul menţionat mai sus şi
+afișează pe ecran, pe câte un rând, cuvintele care cuprind cel puțin o notă muzicală. Dacă
+nu există astfel de cuvinte, se afișează pe ecran mesajul nu exista.
+Notele muzicale sunt DO, RE, MI, FA, SOL, LA, SI.
+Exemplu: pentru textul
+REMI DOMINO SI KHANHOO SUNT DENUMIRI DE JOCURI CE AU ASPECTE SIMILARE
+se afişează cuvintele de mai jos, nu neapărat în această ordine
+REMI
+DOMINO
+SI
+DENUMIRI
+SIMILARE
+*/
+int contineNota(char cuv[])
+{
+    if(strstr(cuv,"DO") || strstr(cuv,"RE") || strstr(cuv,"MI") ||
+       strstr(cuv,"FA") || strstr(cuv,"SOL") || strstr(cuv,"LA") ||
+       strstr(cuv,"SI"))
+        return 1;
+    return 0;
+}
 
 
+void problem4(){
+    char text[101]="REMI DOMINO SI KHANHOO SUNT DENUMIRI DE JOCURI CE AU ASPECTE SIMILARE ";
+    char *p=strtok(text," ");
+    int gasit = 0;
+    while(p)
+    {
+        if(contineNota(p))
+        {
+            cout<<p<<endl;
+            gasit = 1;
+        }
+        p=strtok(NULL," ");
+    }
+    if(gasit==0)
+        cout << "nu exista";
+}
 
 
+/*
+Scrieţi un program C/C++ care citeşte de la tastatură, în această ordine, un număr natural
+n, apoi n cuvinte, separate prin Enter, urmate de un număr natural k. Numerele citite sunt
+din intervalul [1,20], iar fiecare cuvânt este format din cel mult 20 de caractere, numai
+litere mici ale alfabetului englez. Cel puţin unul dintre cuvinte are k litere. Programul
+construiește în memorie, apoi afișează pe ecran, un șir care să cuprindă cuvintele citite,
+separate prin câte un spațiu, astfel încât toate cele care au k litere să ocupe primele poziţii,
+iar celelalte să se regăsească în continuarea acestora, într-o ordine oarecare.
+Exemplu: dacă se citesc, în această ordine, datele alăturate, unul dintre
+șirurile obținute poate fi:
+am un de cires mai
+(10p.)
+5
+am
+un
+cires
+de
+mai
+2
+*/
+
+void citire(char v[21][21], int n)
+{
+    for(int i=0;i<n;i++)
+        cin>>v[i];
+}
+void afisare(char v[21][21], int n, int k)
+{
+    for(int i=0;i<n;i++)
+        if(strlen(v[i])==k)
+            cout<<v[i]<<" ";
+
+    for(int i=0;i<n;i++)
+        if(strlen(v[i])!=k)
+            cout<<v[i]<<" ";
+}
+
+void problem5(){
+    int n,k;
+    char v[21][21];
+
+    cin>>n;
+    citire(v,n);
+    cin>>k;
+    afisare(v,n,k);
+}
+
+/*
+Se consideră un cuvânt format din cel puțin două și cel mult 100 de caractere, numai litere
+mici ale alfabetului englez.
+Scrieţi un program C/C++ care citeşte de la tastatură un cuvânt de tipul precizat și afișează
+pe ecran mesajul DA în cazul în care cuvântul conține doar consoane şi, eventual, vocala i,
+sau mesajul NU în caz contrar.
+Exemplu: pentru cuvântul inscriptibil sau cuvântul brr
+se afişează mesajul
+DA
+iar pentru cuvântul inestimabil sau cuvântul iii
+se afişează mesajul
+N
+*/
+int verifica(char s[])
+{
+    for(int i=0;i<strlen(s);i++)
+        if(s[i]=='a' || s[i]=='e' || s[i]=='o' || s[i]=='u')
+            return 0;
+    return 1;
+}
+void problem6(){
+    char s[101];
+    cin>>s;
+
+    if(verifica(s))
+        cout<<"DA";
+    else
+        cout<<"NU";
+}
+
+/*
+Fiind date două șiruri de caractere a şi b, îl numim pe a prefix al lui b dacă a este egal cu b
+sau dacă b se poate obţine din a prin alipirea la dreapta a unor noi caractere.
+Variabilele a şi b pot memora câte un șir cu cel mult 20 de caractere. Știind că variabila b a
+fost inițializată cu un șir format dintr-un număr par de caractere, scrieţi o secvenţă de
+instrucţiuni în urma executării căreia variabila a să memoreze un prefix al lui b a cărui
+lungime să fie jumătate din lungimea lui b.
+Exemplu: dacă b memorează şirul aurari, atunci a memorează şirul aur.
+*/
+void prefix(char a[], char b[])
+{
+    int n=strlen(b)/2;
+
+    for(int i=0;i<n;i++)
+        a[i]=b[i];
+
+    a[n]='\0';
+}
+void problem8(){
+    char a[21], b[21];
+    cin>>b;
+    prefix(a,b);
+    cout<<a;
+}
 
 
+/*
+Se consideră un text cu cel mult 100 de caractere, în care cuvintele sunt formate numai
+din litere mari și mici ale alfabetului englez și sunt separate prin câte un spațiu. Textul
+reprezintă numele unei instituţii sau al unei organizaţii.
+Scrieţi un program C/C++ care citeşte de la tastatură un text de tipul precizat şi construieşte
+în memorie, apoi afişează pe ecran, un şir de caractere ce reprezintă acronimul
+corespunzător numelui citit. Acronimul este format din primul caracter al fiecărui cuvânt al
+numelui care începe cu majusculă.
+Exemplu: dacă şirul citit este
+Universitatea de Arte Plastice BUCURESTI
+se va obţine şirul
+UAPB
+*/
+void acronim(char text[], char rez[])
+{
+    char *p=strtok(text," ");
+    int k=0;
 
+    while(p)
+    {
+        if(p[0]>='A'&&p[0]<='Z')
+        {
+            rez[k]=p[0];
+            k++;
+        }
+        p=strtok(NULL," ");
+    }
 
+    rez[k]='\0';
+}
+void problem9(){
+    char text[101]="Universitatea de Arte Plastice BUCURESTI";
+    char rez[101];
+    acronim(text,rez);
+    cout<<rez;
 
-
-
-
-
-
-
-
-
-
+}
 
 
 
